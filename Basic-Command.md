@@ -1,18 +1,20 @@
 # INSTALLATION
-## Docker (Recommended )
+
+## Docker (Recommended)
+
 sudo docker run --name Postgres-DB -e POSTGRES_PASSWORD=123456 -p 5432:5432 -d postgres:alpine
-  * -e = Environment Variables
-  * -d = unknown (deattach)
+
+* -e = Environment Variables
+* -d = unknown (deattach)
 sudo docker run --name Postgres-DB -e POSTGRES_PASSWORD=123456 -v /home/tito/Tito/DB-PostGres:/var/lib/postgresql/data -p 5432:5432 -d postgres:alpine
 
 sudo docker exec -it -u postgres Postgres-DB psql
-    * -u = UserName
+    *-u = UserName
     * Postgres-DB = Database Name
     * psql = run this command on container
 
-
-
 ## Connect local DB
+
     # psql -U postgres -d postgres -h 127.0.0.1
       * -U = UserName
       * -d = Select DataBase
@@ -21,27 +23,32 @@ sudo docker exec -it -u postgres Postgres-DB psql
     # sudo -u postgres psql
 
 ## Connect to Docker
+
     # sudo docker exec -it -u postgres Postgres-DB psql
       * -u = UserName
       * Postgres-DB = Database Name
       * psql = run this command on container4
 
+## Basic Command
 
-# Basic Command
-    # \l                    Show Databases
-    # \q                    quit
-    # \du                   List Roles/Users and accesses
-    # \c -c postgres        Switch to Users
-    # \c inc_backup         Switch DataBase
     # \d                    Table Lists
     # \d "TABLENAMES"      show tables detailes
-    # \conninfo             Connection Information
-    Change Schema
+
     # \dn - List schemas
     # \dt - List tables inside public schemas
     # \dt schema1. - List tables inside particular schemas. For eg: 'schema1'.
+    # \dx                   List of Extentions
+    # \du                   List Roles/Users and accesses
 
-### NOSUPERUSER is the default:
+    # \l                    Show Databases
+    # \q                    quit
+    
+    # \c -c postgres        Switch to Users
+    # \c inc_backup         Switch DataBase
+    
+    # \conninfo             Connection Information
+
+### NOSUPERUSER is the default
 
     # CREATE ROLE "role name" WITH PASSWORD '*****' SUPERUSER;
 
@@ -51,8 +58,7 @@ sudo docker exec -it -u postgres Postgres-DB psql
         * -ls = login + superuser
         * -U postgres = create new user with this user
 
-
-# Create & Remove Database
+## Create & Remove Database
 
     IN PSQL
     # CREATE DATABASE BerozresanDB WITH OWNER = postgres;
@@ -67,12 +73,11 @@ sudo docker exec -it -u postgres Postgres-DB psql
     
     IN UNIX(SELL)
     # dropdb test1 -h 127.0.0.1
-# Create database from TEMPLATE
+
+## Create database from TEMPLATE
+
     # CREATE DATABASE new_template WITH TEMPLATE=template0
 
+## Restart Password
 
-
-# Restart Password
     ALTER USER postgres PASSWORD 'newpassword';
-
-
